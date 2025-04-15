@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketPlace - Главная</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header">
+        <section class="navigation-section">
+            <a href="index.html" class="logo">MarketPlace</a>
+            <div class="navigation-container">
+                <nav aria-label="Navigation">
+                    <ol class="navigation">
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="about-us.html">О компании</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                    </ol>
+                </nav>
+                <div class="user-actions">
+                    <a href="php/login.php">Войти</a>
+                    <a href="php/register.php">Зарегистрироваться</a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- Популярные товары -->
+    <section id="popular-products" class="product-catalog">
+        <div class="container">
+            <h2>Популярные товары: что чаще покупают наши клиенты</h2>
+            <!-- Контейнер с кнопками навигации -->
+            <div class="scroll-container">
+                <button class="scroll-button left" onclick="scrollProducts('left')">&#10094;</button>
+                <div class="products-scroll">
+                    <div class="product-card">
+                        <img src="product1.jpg" alt="Товар 1">
+                        <h3>Название товара</h3>
+                        <p class="price">2999 ₽</p>
+                        <a class="btn-posnawr" href="#">В корзину<span></span></a>
+                    </div>
+                    <div class="product-card">
+                        <img src="product2.jpg" alt="Товар 2">
+                        <h3>Название товара</h3>
+                        <p class="price">1999 ₽</p>
+                        <a class="btn-posnawr" href="#">В корзину<span></span></a>
+                    </div>
+                    <div class="product-card">
+                        <img src="product3.jpg" alt="Товар 3">
+                        <h3>Название товара</h3>
+                        <p class="price">4999 ₽</p>
+                        <a class="btn-posnawr" href="#">В корзину<span></span></a>
+                    </div>
+                    <div class="product-card">
+                        <img src="product4.jpg" alt="Товар 4">
+                        <h3>Название товара</h3>
+                        <p class="price">3999 ₽</p>
+                        <a class="btn-posnawr" href="#">В корзину<span></span></a>
+                    </div>
+                    <div class="product-card">
+                        <img src="product5.jpg" alt="Товар 5">
+                        <h3>Название товара</h3>
+                        <p class="price">5999 ₽</p>
+                        <a class="btn-posnawr" href="#">В корзину<span></span></a>
+                    </div>
+                </div>
+                <button class="scroll-button right" onclick="scrollProducts('right')">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Текущая акция -->
+    <section id="current-promotion" class="promotion-section">
+        <div class="container">
+            <h2>Текущая акция:</h2>
+            <div class="promotion-card">
+                <img src="promotion.jpg" alt="Акционный товар">
+                <div class="promotion-info">
+                    <h3>Специальное предложение!</h3>
+                    <p>Описание</p>
+                    <p class="price">2999 ₽</p>
+                    <button class="buy-now">Заказать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Наши преимущества -->
+    <section id="our-advantages" class="advantages-section">
+        <div class="container">
+            <h2>Наши преимущества</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <i class="fas fa-truck"></i>
+                    <h3>Быстрая доставка</h3>
+                    <p>Доставка в течение 24 часов.</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-money-bill-alt"></i>
+                    <h3>Гарантия качества</h3>
+                    <p>100% гарантия на все товары.</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>Поддержка клиентов</h3>
+                    <p>Онлайн-поддержка 24/7.</p>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-lock"></i>
+                    <h3>Безопасность платежей</h3>
+                    <p>Защищенные платежи через SSL.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2023 MarketPlace. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="product-scroll.js"></script>
+    <script src="button-script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

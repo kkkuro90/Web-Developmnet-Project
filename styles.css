@@ -1,0 +1,425 @@
+@media (max-width: 768px) {
+    .nav ul {
+        display: none;
+    }
+
+    .user-actions {
+        display: flex;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    .promotion-card {
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .promotion-card img {
+        width: 100%;
+        height: auto;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    background-color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none; 
+}
+
+.nav ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 20px;
+}
+
+.nav li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: right;
+    margin-top: 15px;
+}
+
+.user-actions a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+.hero-section {
+    background-color: #000;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.search-form {
+    margin-top: 20px;
+}
+
+.search-form input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-catalog {
+    padding: 50px 0;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+}
+
+.price {
+    color: #FF5722;
+    font-weight: bold;
+}
+
+.add-to-cart {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.about-us,
+.contact-info,
+.faq-section {
+    padding: 50px 0;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+.navigation-section
+{
+    padding: 50px 0;
+    text-align: center;
+        
+}
+.navigation-container
+{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+.navigation
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;    
+}
+.navigation li {
+    display: inline-block;
+    margin-left: 20px;
+}
+.navigation li a {
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+.btn-posnawr {
+    color: #00abec;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+    border-radius: 8px;
+    margin: 1rem auto;
+    font: normal 18px/60px 'proxima-nova', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #00abec;
+  }
+  .btn-posnawr span {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: #00abec;
+    -webkit-transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+  .btn-posnawr:hover {
+    color: #eee;
+  }
+  .btn-posnawr:hover span {
+    width: 225%;
+    height: 562.5px;
+  }
+  .btn-posnawr:active {
+    background-color: #00c4ad;
+  }
+  .promotion-section {
+    padding: 50px 0;
+    background-color: #f9f9f9; /* Светлый фон для акции */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.promotion-section h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.promotion-card {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Расстояние между изображением и информацией */
+    background-color: #fff; /* Белый фон карточки */
+    border: 1px solid #ddd; /* Легкая граница */
+    border-radius: 8px; /* Закругленные углы */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+.promotion-card img {
+    width: 300px; /* Ширина изображения */
+    height: auto; /* Пропорциональная высота */
+    border-radius: 8px; /* Закругленные углы изображения */
+    object-fit: cover; /* Корректное отображение изображения */
+}
+
+.promotion-info {
+    text-align: left;
+    flex: 1; /* Занимает оставшееся пространство */
+}
+
+.promotion-info h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007BFF; /* Акцентный цвет заголовка */
+}
+
+.promotion-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555; /* Серый цвет текста */
+    margin-bottom: 15px;
+}
+
+.promotion-info .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF5722; /* Акцентный цвет цены */
+    margin-bottom: 20px;
+}
+
+.promotion-info .buy-now {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px; /* Закругленные углы кнопки */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.promotion-info .buy-now:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+    transform: scale(1.05); /* Легкое увеличение */
+}
+.product-catalog {
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.product-catalog h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.scroll-container {
+    position: relative;
+    overflow: hidden; /* Скрываем полосу прокрутки */
+}
+
+.products-scroll {
+    display: flex; /* Горизонтальное расположение карточек */
+    gap: 20px; /* Расстояние между карточками */
+    overflow-x: auto; /* Горизонтальная прокрутка */
+    scroll-behavior: smooth; /* Плавная прокрутка */
+    padding: 0 20px; /* Отступы по краям */
+}
+
+.products-scroll::-webkit-scrollbar {
+    display: none; /* Скрываем полосу прокрутки */
+}
+
+.product-card {
+    flex: 0 0 auto; /* Фиксированная ширина карточки */
+    width: 250px; /* Ширина карточки */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+}
+
+.price {
+    color: #FF5722;
+    font-weight: bold;
+}
+/* Стили для кнопок навигации */
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.scroll-button.left {
+    left: 10px;
+}
+
+.scroll-button.right {
+    right: 10px;
+}
+  
