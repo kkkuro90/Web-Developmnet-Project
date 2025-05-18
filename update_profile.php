@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config/db.php';
+require_once 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
@@ -9,15 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone = trim($_POST['phone'] ?? '');
     $address = trim($_POST['address'] ?? '');
     
-    // Валидация данных
     if (empty($name) || empty($email)) {
         $_SESSION['error'] = 'Имя и email обязательны для заполнения';
         header("Location: profile.php");
         exit();
     }
     
-    // Проверка email на уникальность
-    $stmt = $db->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
     $stmt->execute([$email, $user_id]);
     
     if ($stmt->fetch()) {
@@ -25,9 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: profile.php");
         exit();
     }
-    
-    // Обновление данных
-    $stmt = $db->prepare("UPDATE users SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?");
+
+    $stmt = $pdo->prepare("UPDATE users SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?");
     $stmt->execute([$name, $email, $phone, $address, $user_id]);
     
     $_SESSION['success'] = 'Данные профиля успешно обновлены';
