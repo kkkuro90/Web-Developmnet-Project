@@ -27,8 +27,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </ol>
                     </nav>
                     <div class="user-actions">
-                        <a href="login.php" class="btn-login">Войти</a>
-                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="profile.php" class="btn-login">Профиль</a>
+                            <a href="logout.php" class="btn-register">Выйти</a>
+                        <?php else: ?>
+                            <a href="login.php" class="btn-login">Войти</a>
+                            <a href="register.php" class="btn-register">Зарегистрироваться</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </section>

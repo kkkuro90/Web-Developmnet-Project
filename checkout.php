@@ -29,6 +29,7 @@ $total_price = $product['price'];
     <meta charset="UTF-8">
     <title>Оплата</title>
     <link rel="stylesheet" href="styles-checkout.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 </head>
 <body>
 
@@ -48,19 +49,40 @@ $total_price = $product['price'];
     <input type="hidden" name="product_id" value="<?= $product_id ?>">
 
     <label for="card_number">Номер карты:</label>
-    <input type="text" id="card_number" name="card_number" placeholder="" required>
+    <input type="text" id="card_number" name="card_number" placeholder="XXXX XXXX XXXX XXXX" required>
 
     <label for="card_name">Имя держателя карты:</label>
-    <input type="text" id="card_name" name="card_name" required>
+    <input type="text" id="card_name" name="card_name" placeholder="IVAN IVANOV" required>
 
     <label for="exp_date">Срок действия (ММ/ГГ):</label>
-    <input type="text" id="exp_date" name="exp_date" placeholder="" required>
+    <input type="text" id="exp_date" name="exp_date" placeholder="MM/YY" required>
 
     <label for="cvv">CVV:</label>
-    <input type="text" id="cvv" name="cvv" placeholder="" required>
+    <input type="text" id="cvv" name="cvv" placeholder="XXX" required>
 
     <button type="submit">Подтвердить платеж</button>
 </form>
+
+<script>
+    new Cleave('#card_number', {
+        creditCard: true,
+        delimiter: ' ',
+        blocks: [4, 4, 4, 4]
+    });
+    new Cleave('#card_name', {
+        uppercase: true,
+        stripLeadingZeroes: true
+    });
+    new Cleave('#exp_date', {
+        date: true,
+        datePattern: ['m', 'y'],
+        delimiter: '/'
+    });
+    new Cleave('#cvv', {
+        blocks: [3],
+        numericOnly: true
+    });
+</script>
 
 </body>
 </html>

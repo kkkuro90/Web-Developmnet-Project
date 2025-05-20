@@ -114,23 +114,23 @@ unset($item);
                         <span>Итого:</span>
                         <span><?= number_format($total_price, 0, '', ' ') ?> ₽</span>
                     </div>
+                    <?php if (!empty($cart_items)): ?>
+                        <button type="submit" form="checkout-form" class="checkout-btn">Оформить заказ</button>
+                    <?php endif; ?>
                 </div>
-              
             </form>
         <?php endif; ?>
     </main>
 
     <?php if (!empty($cart_items)): ?>
-                    <form action="checkout.php" method="get" id="checkout-form">
-                        <?php foreach ($cart_items as $item): ?>
-                            <input type="hidden" name="items[]" value="<?= $item['product_id'] ?>">
-                        <?php endforeach; ?>
-                    </form>
-                    <button type="button" onclick="document.getElementById('checkout-form').submit()" class="checkout-btn">Оформить заказ</button>
-                    <?php else: ?>
-                    <?php endif; ?>
+        <form action="checkout.php" method="post" id="checkout-form">
+            <?php foreach ($cart_items as $item): ?>
+                <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+            <?php endforeach; ?>
+        </form>
+    <?php endif; ?>
 
-                    <script>
+    <script>
         function updateCartCount() {
             fetch('get_cart_count.php')
                 .then(response => response.json())

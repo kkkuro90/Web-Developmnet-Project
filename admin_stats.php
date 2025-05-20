@@ -90,6 +90,46 @@ try {
                 </div>
             </div>
         </section>
+        <section class="stats-section">
+            <h2 class="section-title">История покупок</h2>
+            <div class="purchase-history">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>ID заказа</th>
+                            <th>Дата</th>
+                            <th>Товар</th>
+                            <th>Категория</th>
+                            <th>Количество</th>
+                            <th>Сумма</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $history = $pdo->query("
+                            SELECT o.*, p.name as product_name, p.category
+                            FROM orders o
+                            JOIN products p ON o.product_id = p.id
+                            ORDER BY o.created_at DESC
+                            LIMIT 50
+                        ")->fetchAll(PDO::FETCH_ASSOC);
+
+                        foreach ($history as $order): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($order['id']) ?></td>
+                                <td><?= date('d.m.Y H:i', strtotime($order['created_at'])) ?></td>
+                                <td><?= htmlspecialchars($order['product_name']) ?></td>
+                                <td><?= htmlspecialchars($order['category']) ?></td>
+                                <td><?= htmlspecialchars($order['quantity']) ?></td>
+                                <td><?= number_format($order['total_amount'], 0, '', ' ') ?> ₽</td>
+                                <td><?= htmlspecialchars($order['status']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <script>
