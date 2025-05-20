@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php';
 
 $stmt = $pdo->query("SELECT id, name, price, image, description, category FROM products");
@@ -27,13 +28,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </ol>
                     </nav>
                     <div class="user-actions">
-                        <?php if (isset($_SESSION['user_id'])): ?>
-                            <a href="profile.php" class="btn-login">Профиль</a>
-                            <a href="logout.php" class="btn-register">Выйти</a>
-                        <?php else: ?>
-                            <a href="login.php" class="btn-login">Войти</a>
-                            <a href="register.php" class="btn-register">Зарегистрироваться</a>
-                        <?php endif; ?>
+                        <a href="login.php" class="btn-login">Войти</a>
+                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
                     </div>
                 </div>
             </section>
@@ -169,6 +165,33 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.querySelector('form')?.addEventListener('submit', () => {
             setTimeout(updateCartCount, 800);
         });
+    </script>
+
+    <script>
+    function updateAuthButtons() {
+        fetch('check_auth.php')
+            .then(response => response.json())
+            .then(data => {
+                const userActions = document.querySelector('.user-actions');
+                if (data.isAuthenticated) {
+                    let buttons = `<a href="profile.php" class="btn-login">Профиль (${data.username})</a>`;
+                    if (data.role === 'admin') {
+                        buttons += `<a href="admin.php" class="btn-register">Админ панель</a>`;
+                    }
+                    buttons += `<a href="logout.php" class="btn-register">Выйти</a>`;
+                    userActions.innerHTML = buttons;
+                } else {
+                    userActions.innerHTML = `
+                        <a href="login.php" class="btn-login">Войти</a>
+                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
+                    `;
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    // Обновляем кнопки при загрузке страницы
+    document.addEventListener('DOMContentLoaded', updateAuthButtons);
     </script>
     
 </body>

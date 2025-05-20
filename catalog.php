@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php'; 
 
 $stmt = $pdo->query("SELECT id, name, price, image, description, category FROM products");
@@ -63,8 +64,8 @@ $categories = $pdo->query("SELECT DISTINCT category FROM products")->fetchAll(PD
                         </ol>
                     </nav>
                     <div class="user-actions">
-                        <a href="login.php">Войти</a>
-                        <a href="register.php">Зарегистрироваться</a>
+                        <a href="login.php" class="btn-login">Войти</a>
+                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
                     </div>
                 </div>
             </section>
@@ -164,6 +165,34 @@ $categories = $pdo->query("SELECT DISTINCT category FROM products")->fetchAll(PD
             window.location.href = url + '?' + params.join('&');
         }
     </script>
+
+    <script>
+    function updateAuthButtons() {
+        fetch('check_auth.php')
+            .then(response => response.json())
+            .then(data => {
+                const userActions = document.querySelector('.user-actions');
+                if (data.isAuthenticated) {
+                    let buttons = `<a href="profile.php" class="btn-login">Профиль (${data.username})</a>`;
+                    if (data.role === 'admin') {
+                        buttons += `<a href="admin.php" class="btn-register">Админ панель</a>`;
+                    }
+                    buttons += `<a href="logout.php" class="btn-register">Выйти</a>`;
+                    userActions.innerHTML = buttons;
+                } else {
+                    userActions.innerHTML = `
+                        <a href="login.php" class="btn-login">Войти</a>
+                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
+                    `;
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    // Обновляем кнопки при загрузке страницы
+    document.addEventListener('DOMContentLoaded', updateAuthButtons);
+    </script>
+
     <footer class="footer">
         <div class="container">
             <p>© 2023 MarketPlace. Все права защищены.</p>

@@ -18,14 +18,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pdo->beginTransaction();
 
     try {
-        $stmt = $pdo->prepare("SELECT price FROM products WHERE id = ?");
+        // Получаем информацию о товаре
+        $stmt = $pdo->prepare("SELECT name, price, category FROM products WHERE id = ?");
         $stmt->execute([$product_id]);
         $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Проверяем, есть ли товар в корзине
+        $cart_stmt = $pdo->prepare("SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?");
+        $cart_stmt->execute([$user_id, $product_id]);
+        $cart_item = $cart_stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Определяем количество
+        $quantity = $cart_item ? $cart_item['quantity'] : 1;
+        
+        // Вычисляем общую сумму
+        $total_amount = $product['price'] * $quantity;
+
+        // Создаем заказ
         $pdo->prepare("
-            INSERT INTO orders (user_id, product_id, total_amount, status)
-            VALUES (?, ?, ?, 'paid')
-        ")->execute([$user_id, $product_id, $product['price']]);
+            INSERT INTO orders (user_id, product_id, product_name, quantity, price, category, total_amount, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'completed')
+        ")->execute([
+            $user_id, 
+            $product_id, 
+            $product['name'],
+            $quantity,
+            $product['price'],
+            $product['category'],
+            $total_amount
+        ]);
+
+        // Если товар был в корзине, удаляем его
+        if ($cart_item) {
+            $pdo->prepare("DELETE FROM cart WHERE user_id = ? AND product_id = ?")
+                ->execute([$user_id, $product_id]);
+        }
 
         $pdo->commit();
 

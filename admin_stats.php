@@ -77,19 +77,7 @@ try {
                 </div>
             </div>
         </section>
-        <section class="stats-section">
-            <h2 class="section-title">Статистика по категориям</h2>
-            <div class="stats-grid">
-                <div class="chart-container">
-                    <h3 class="chart-title">Количество проданных товаров</h3>
-                    <canvas id="salesChart" style="display: block; box-sizing: border-box; height: 180px; width: 361px; margin-top: 100px;"></canvas>
-                </div>
-                <div class="chart-container">
-                    <h3 class="chart-title">Выручка по категориям</h3>
-                    <canvas id="revenueChart"></canvas>
-                </div>
-            </div>
-        </section>
+        
         <section class="stats-section">
             <h2 class="section-title">История покупок</h2>
             <div class="purchase-history">
@@ -141,91 +129,7 @@ try {
         const ordersCount = <?= json_encode(array_column($dateStats, 'orders_count')) ?>;
         const dailyRevenue = <?= json_encode(array_column($dateStats, 'daily_revenue')) ?>;
 
-        const salesCtx = document.getElementById('salesChart').getContext('2d');
-        new Chart(salesCtx, {
-            type: 'bar',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'Продано товаров',
-                    data: salesData,
-                    backgroundColor: [
-                        'rgba(170, 0, 255, 0.7)',
-                        'rgba(0, 230, 118, 0.7)',
-                        'rgba(255, 193, 7, 0.7)',
-                        'rgba(33, 150, 243, 0.7)',
-                        'rgba(233, 30, 99, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(170, 0, 255, 1)',
-                        'rgba(0, 230, 118, 1)',
-                        'rgba(255, 193, 7, 1)',
-                        'rgba(33, 150, 243, 1)',
-                        'rgba(233, 30, 99, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                }
-            }
-        });
-
-        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
-        new Chart(revenueCtx, {
-            type: 'doughnut',
-            data: {
-                labels: categories,
-                datasets: [{
-                    label: 'Выручка (₽)',
-                    data: revenueData,
-                    backgroundColor: [
-                        'rgba(170, 0, 255, 0.7)',
-                        'rgba(0, 230, 118, 0.7)',
-                        'rgba(255, 193, 7, 0.7)',
-                        'rgba(33, 150, 243, 0.7)',
-                        'rgba(233, 30, 99, 0.7)'
-                    ],
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'right',
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.8)'
-                        }
-                    }
-                }
-            }
-        });
+    
 
         const ordersCtx = document.getElementById('ordersChart').getContext('2d');
         new Chart(ordersCtx, {

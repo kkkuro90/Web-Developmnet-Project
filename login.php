@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
+                $_SESSION['username'] = $user['name'];
                 $_SESSION['role'] = $user['role']; 
 
                 if ($user['role'] === 'admin') {
@@ -47,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: profile.php');
                 }
                 exit();
+            } else {
+                flash('Неверное имя пользователя или пароль', 'error');
             }
         } catch (PDOException $e) {
             error_log("DB Error: " . $e->getMessage());

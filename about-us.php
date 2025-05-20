@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config.php'; 
 
 $stmt = $pdo->query("SELECT id, name, price, image, description, category FROM products");
@@ -27,8 +28,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </ol>
                     </nav>
                     <div class="user-actions">
-                        <a href="login.php">Войти</a>
-                        <a href="register.php">Зарегистрироваться</a>
+                        <a href="login.php" class="btn-login">Войти</a>
+                        <a href="register.php" class="btn-register">Зарегистрироваться</a>
                     </div>
                 </div>
             </section>
@@ -111,16 +112,36 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 });
         }
 
+        function updateAuthButtons() {
+            fetch('check_auth.php')
+                .then(response => response.json())
+                .then(data => {
+                    const userActions = document.querySelector('.user-actions');
+                    if (data.isAuthenticated) {
+                        let buttons = `<a href="profile.php" class="btn-login">Профиль (${data.username})</a>`;
+                        if (data.role === 'admin') {
+                            buttons += `<a href="admin.php" class="btn-register">Админ панель</a>`;
+                        }
+                        buttons += `<a href="logout.php" class="btn-register">Выйти</a>`;
+                        userActions.innerHTML = buttons;
+                    } else {
+                        userActions.innerHTML = `
+                            <a href="login.php" class="btn-login">Войти</a>
+                            <a href="register.php" class="btn-register">Зарегистрироваться</a>
+                        `;
+                    }
+                })
+                .catch(error => console.error('Ошибка:', error));
+        }
 
-        window.addEventListener('DOMContentLoaded', updateCartCount);
-
+        // Обновляем кнопки при загрузке страницы
+        document.addEventListener('DOMContentLoaded', updateAuthButtons);
 
         document.querySelectorAll('.quantity-btn, .cart-item-remove').forEach(btn => {
             btn.addEventListener('click', () => {
                 setTimeout(updateCartCount, 500);
             });
         });
-
 
         document.querySelector('form')?.addEventListener('submit', () => {
             setTimeout(updateCartCount, 800);
